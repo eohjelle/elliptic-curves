@@ -1,0 +1,82 @@
+\documentclass{amsart}
+
+% Packages
+\usepackage{amsmath,amsfonts,amsthm,amssymb,mathrsfs}
+
+% Lists
+\usepackage[shortlabels]{enumitem}
+
+% Diagrams and spectral sequences
+\usepackage{tikz}
+\usetikzlibrary{cd,matrix,positioning,calc,arrows,decorations.markings,decorations.pathmorphing}
+\usepackage{tikz-3dplot}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}
+\newtheorem{insight}{Insight}
+\newtheorem{fail}{Failed attempt}
+\newtheorem{warning}{Warning}
+
+% References
+\usepackage[
+	backend=biber,
+	style=alphabetic]{biblatex}
+%\bibliography{references}
+\addbibresource{references.bib}
+\usepackage{hyperref}
+
+% Document layout
+%% Margins
+\usepackage[a4paper,centering,margin=1in]{geometry}
+%% Paragraph layout
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+%% Correct parskip for theorem environments
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+% Paragraph numberings
+\setcounter{secnumdepth}{4}
+
+% Todo notes
+\usepackage[backgroundcolor=green]{todonotes} 
+
+% Custom symbols
+\newcommand{\colim}{\varinjlim}
+\newcommand{\clim}{\varprojlim}
+
+% Japanese math letters
+\usepackage{CJKutf8}
+\newcommand{\yo}{\mbox{\begin{CJK*}{UTF8}{gbsn}よ\end{CJK*}}}
+
+% Author and title
+\title{Elliptic curves}
+
+\begin{document}
+\maketitle
+\tableofcontents 
+
+These notes are from a course taught by Professor Bao Le Hung at Nortwestern University during the winter quarter of the 20/21 academic year.
+The note taker is responsible for any mistakes or inaccuracies that occur.
+
+\input{lec1}
+
+
+\printbibliography
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

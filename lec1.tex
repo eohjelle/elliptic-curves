@@ -1,5 +1,148 @@
 \section{Lecture 1 (Monday 1/11)}
+This is a topics class about \textbf{elliptic curves}.
+The goal of today is to give an overview.
 
+A quick and concrete definition:
+\begin{definition}
+  Let \( k \) be a field. An \textit{elliptic curve} \( E/k \) is a smooth projective plane cubic determined by an affine equation
+  \begin{equation}\label{eq:weierstrass-eqn} y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6 , \end{equation}
+  where \( a_i \in k \), i. e. \( E \) is the closure of this affine curve in \( \mathbb{P}^2 \), \textit{and} the data of a rational point \( 0 \in E(k) \).
+\end{definition}
+In other words, if \( \mathbb{P}^2 \) has homogeneous coordinates \( [X : Y : Z] \), then \( E \) is the curve in \( \mathbb{P}^2 \) determined by the equation
+\[ Y^2 Z + a_1 XYZ + a_3 YZ^2 = X^3 + a_2 X^2 Z + a_4 XZ^2 + a_6 Z^3 . \]
+For this to be \textit{smooth}, there is a condition \( \Delta( a_1,a_2,\dots) \neq 0 \), where \( \Delta \) is a polynomial in the \( a_i \).
+(The precise formula can be found in Silverman.)
+In the case where the equation is \begin{equation}\label{eq:short-weierstrass-eqn} y^2 = x^3 + ax + b , \end{equation}
+we have \( \Delta(a,b) = - 4a^3 - 27b^2 . \)
+By the way, Equation \ref{eq:weierstrass-eqn} is called the \textit{Weierstrass equation}, and Equation \ref{eq:short-weierstrass-eqn} is called the \textit{short Weierstrass equation}.
+
+\subsection{Why study elliptic curves?}
+Firstly, the plane cubics in \( \mathbb{P}^2 \) are exactly the smooth projective genus 1 curves.
+Being genus 1 is between being genus 0, i. e. \( \mathbb{P}^1 \), and of genus \( >1 \), of ``general type''.
+In the theory of curves, there is a trichotomy where the geometry behaves very differently based on whether the genus is 0, 1, or higher than 1.
+
+Secondly, an elliptic curve is exactly a proper group variety of dimension 1.
+There is a multiplication map \( m \colon E \times E\to E \), and inversion map \( \operatorname{inv} \colon E \to E \), and an identity map \( 0 \colon \operatorname{Spec}k \to E \), satisfying a bunch of commutative diagrams.
+The point is that these maps are algebraic maps.
+
+Being a proper group variety means that we have direct access to cohomological invariants of \( E \).
+For example the \textit{Tate module}.
+The interaction between the group structure and algebraic variety structure implies many things.
+
+\textit{Themes:}
+\begin{enumerate}
+\item Study nature of the abelian group \( E(k) \). (We will see later on that \textit{abelian} is a formal consequence of being proper.)
+\item See how cohomological invariant control \( E(k) \). More or less everything you want to know about \( E(k) \) will be controlled by cohomological invariants, namely the Tate module.
+\end{enumerate}
+
+\subsection{Examples}
+\begin{enumerate}
+\item \( k = \mathbb{C} \). In this case, \( E/\mathbb{C} \) is a compact Riemann surface of genus 1. By the uniformization, a genus 1 Riemann surface has universal cover \( \mathbb{C} \), hence \( E(\mathbb{C}) \cong \mathbb{C}/\Lambda \), where \( \Lambda \subseteq \mathbb{C}^2 \) is a lattice. These are all complex tori.
+  It turns out that the isomorphism \( E(\mathbb{C}) \cong \mathbb{C}/\Lambda \) can be made to respect the group structure.
+  
+  More canonically, \( \Lambda \cong \pi_1 \left( E(\mathbb{C}),0 \right) = H_1 \left( E(\mathbb{C}), \mathbb{Z} \right) \).
+  We can understand \( \mathbb{C} \) as the Lie algebra of \( E \), and the exponential map \( \operatorname{Lie}(E) \to E(\mathbb{C}) \) corresponds to the quotient map \( \mathbb{C} \to \mathbb{C}/\Lambda \).
+  We have \( \operatorname{Lie}(E) = T_0 E(\mathbb{C}) = \left\lbrace \mbox{invariant global vector fields on \( E(\mathbb{C} \)} \right\rbrace = H^0 \left( E(\mathbb{C}),\Omega^1 \right)^* \).
+
+  Note that the isomorphism \( E(\mathbb{C}) \cong \mathbb{C}/\Lambda \) is complex analytic, and the \( x,y \) that show up in the Weierstrass equation correspond to some doubly periodic meromorphic functions on \( \mathbb{C} \).
+  These are so-called \textit{elliptic functions}.
+
+  The \( n \)-torsion \( E[n](\mathbb{C}) \cong \frac{1}{n} \Lambda / \Lambda \cong \mathbb{Z}/n \times \mathbb{Z}/n \).
+  For a prime \( p \), \textit{Tate module} \( T_p E \) is defined as
+  \[ T_p(E) = \clim_{\times p} E[p^k](\mathbb{C}) = \clim \left( E[p] \leftarrow E[p^2] \leftarrow \cdots \right) . \]
+  Canonically, in this case \[ T_pE = \clim \frac{1}{p^k} \Lambda / \Lambda = \clim_{\text{projection}} \Lambda/p^k \Lambda = \Lambda \otimes_{\mathbb{Z}} \mathbb{Z}_p = H_1 \left( E(\mathbb{C}),\mathbb{Z} \right) \otimes_{\mathbb{Z}} \mathbb{Z}_p , \]
+  the \( p \)-adic completion of \( \Lambda = H_1 \left( E(\mathbb{C}),\mathbb{Z} \right) \).
+
+  For the first theme, we have seen that \( E(\mathbb{C}) \) is an divisible uncountable abelian group.
+  For the second, \( E \) is completely determined by the pair \( \left( \operatorname{Lie} E, H_1 \left( E,\mathbb{Z} \right) \right) = \left( H^0 \left( E,\Omega^1 \right)^*,H_1 \left( E,\mathbb{Z} \right) \right) \).
+  Here, \( H_1 \left( E,\mathbb{Z} \right) \) is a free \( \mathbb{Z} \)-module, and \( H^0 \left( E,\Omega^1 \right)^* \) is a line in \( H_1 \left( E,\mathbb{Z} \right)^* \otimes_{\mathbb{Z}} \mathbb{C} \).
+  This is the data of a \textit{Hodge structure} of weight -1.
+  The interesting fact here is that a nonlinear thing like \( E \) is determined by just linear algebrac data that can be extracted from \( E \) by cohomological data.
+\item \( k = \mathbb{F}_q \) a finite field.
+  Now \( E(\mathbb{F}_q) \) is a finite abelian group.
+  A basic fact is that if \( a = q + 1 - \# E(\mathbb{F}_q) \), then \( |a| \leq 2 \sqrt{q} \).
+  This is known as the \textit{Hasse bound}.
+  We have a double cover
+  \begin{align*}
+    E & \to \mathbb{P}^1 \\
+    (x,y) & \mapsto x
+  \end{align*}
+  which should mean that the number of rational points of \( E \) is roughly the same as the number of points of \( \mathbb{P}^1 \), which is \( q+1 \).
+  The discrepancy is of order \( \sqrt{q} \), and the heuristic is that the Hasse bound is as if \( \# E(\mathbb{F}_q) \) is ``random'' (subject to some natural constraints).
+
+  How do the cohomological invariants come into play?
+  We don't have singular cohomology, but we do have the Tate module \( T_l(E) \), where \( l \neq p = \operatorname{char} q \).
+  It is defined as \[ T_l E = \clim E[l^n]( \overline{\mathbb{F}_q} ) . \]
+  There are two important facts about this Tate module.
+  The first is that \( E[l^n] \left( \overline{\mathbb{F}_q} \right) \cong \mathbb{Z}/l^n \times \mathbb{Z}/l^n \) as in the complex case, and consequently \( T_l E \cong \mathbb{Z}_l^2 \).
+  The second is that \( T_l E \) has a natural action of \( \operatorname{Gal} \left( \overline{\mathbb{F}_q}/ \mathbb{F}_q \right) \).
+  This Galois group is simple, namely procyclic \( \cong \hat{\mathbb{Z}} \), as topologically it is generated by the Frobenius \( \operatorname{Frob}_q \).
+  In sum, \( T_l E \) is a free \( \mathbb{Z}_l \)-module of rank two with an action of \( \operatorname{Frob}_q \).
+  The meaning of \( a \) from before is that \( a = \operatorname{tr} \operatorname{Frob}_q \).
+  (Note that this does not hold for \( l = p \).)
+
+  In the general context, for algebraic varieties over finite fields you don't have singular cohomology, but you do have \( l \)-adic or \'etale cohomology.
+  Secretly, \( T_l E \cong H_1 \left( E/ \overline{\mathbb{F}_q}, \mathbb{Z}_l \right) \), the \( l \)-adic homology of \( E \).
+  One advantage of working with the Tate module is that it is elementaryto define, whereas defining \( l \)-adic cohomology is rather complicated.
+
+  In the finite field case, \( E \) is almost recovered from the action of \( \operatorname{Frob}_q \) on \( T_l E \).
+  The problem is the choice of \( l \): If you know this action for all \( l \), even \( l = p \), then you can indeed recover \( E \).
+  Compared to the complex case, we only work with homology and we have no Hodge structure.
+  However, we do have an action of the Galois group as a substitute for the Hodge structure.
+  This is a recurring theme.
+\item \( k \) a local field, i. e. a finite extension of \( \mathbb{Q}_p \).
+  Let's stick with \( k = \mathbb{Q}_p \) for simplicity, but this will not impact the results.
+  Now \( E(\mathbb{Q}_p) \) is a \( p \)-adic manifold, i. e. has charts that are isomorphic to \( p \)-adic balls \( \mathbb{Z}_p \), and in fact a \( p \)-adic Lie groups.
+  One feature of \( \mathbb{Q}_p \) is the existence of a good integral structure: There is a maximal compact subring \( \mathbb{Z}_p \subseteq \mathbb{Q}_p \), and one can comtemplate if there are integral models \( \mathcal{E} / \mathbb{Z}_p \) for \( E / \mathbb{Q}_p \).
+  We can obtain one such integral model cheaply by clearing denominators in a Weierstrass equation, but it is a subtle question to get the ``optimal'' one, and this is given by the N\'eron model.
+  The source of the subtlety is that if \( \mathcal{E} \) is proper, then \( \mathcal{E}( \mathbb{Z}_p ) = E(\mathbb{Q}_p) \), but \( \mathcal{E} \) may not have a group structure.
+  It may be impossible for \( \mathcal{E} \) to be proper and have a group structure at the same time, but the N\'eron model \( \mathcal{E} \) has a group structure and still satisfies \( \mathcal{E}( \mathbb{Z}_p ) = E(\mathbb{Q}_p) \).
+  If \( E \) has \textit{good reduction} we can take \( \mathcal{E} \) to be proper and have a group structure.
+  This implies that we have an exact sequence
+  \[ 0 \to \underbrace{\hat{\mathcal{E}}(\mathbb{Z}_p)}_{\text{formal group}} \to E(\mathbb{Q}_p) = \mathcal{E}(\mathbb{Z}_p) \to \underbrace{\mathcal{E}(\mathbb{F}_p)}_{\text{finite group}} \to 0 . \]
+  The formal group on the left, whatever it is, is a pro-\( p \)-group.
+  \todo[inline]{Insert picture}
+  \( \operatorname{Spec} \mathbb{Z}_p \) has two points, namely the generic point \( \operatorname{Spec} \mathbb{Q}_p \) and \( \operatorname{Spec} \mathbb{F}_p \).
+  The elliptic curve \( E \) lives over \( \operatorname{Spec} \mathbb{Q}_p \), and the integral model \( \mathcal{E} \) is a way too expand \( E \) over the other point \( \operatorname{Spec} \mathbb{F}_p \).
+  Any point of \( E(\mathbb{Q}_p) \) then corresponds to a ``section'' \( \operatorname{Spec} \mathbb{Z}_p \to \mathcal{E} \), which specializes to a point \( \mathcal{E}(\mathbb{F}_p) \).
+  We can interpret the exact sequence as decomposing \( E(\mathbb{Q}_p) \) into \( p \)-adic balls.
+
+  The Tate module \( T_l E \), which is defined as before, has an action of \( \operatorname{Gal} \left( \overline{\mathbb{Q}_p}/ \mathbb{Q}_p \right) \), a much more complicated Galois group than in the case of finite fields.
+  The Tate module with the Galois action does not quite determine \( E \) as strongly as in the case of finite fields, however it does determine many things about \( \mathcal{E} \).
+  In particular, it can recognize when \( E \) has good reduction.
+  This is the criterion of \textit{N\'eron-Ogg-Shafarevich.}
+\item \( k \) is a number field, i. e. a finite extension of \( \mathbb{Q} \), and let us for simplicity consider the case \( k = \mathbb{Q} \).
+  \begin{theorem}[Mordell-Weil]
+    \( E(\mathbb{Q}) \) is a finitely generated abelian group.
+  \end{theorem}
+  In other words, \( E(\mathbb{Q}) \cong E(\mathbb{Q})_{\text{tors}} \oplus \mathbb{Z}^r \).
+  The number \( r \) is the \textit{rank} of \( E \).
+  \begin{remark}
+    Let \( C/\mathbb{Q} \) be a smooth projective curve of genus \( g \). If \( g = 0 \), then \( C(\mathbb{Q}) \) is either \( \infty \) or \( \emptyset \). If \( g > 1 \), then \( C(\mathbb{Q}) \) is finite by Faltings' Theorem. If \( g = 1 \), then \( C(\mathbb{Q}) \) can be \( \emptyset \), finite, or infinite.
+  \end{remark}
+  Computing \( E(\mathbb{Q}) \) is interesting from an arithmetic point of view. As an example, take the \textit{congruent number problem}:
+  An integer \( n \in \mathbb{Z} \) that is square-free is a \textit{congruent number} if there is a triple \( a,b,c \in \mathbb{Q} \) with \( a^2 + b^2 = c^2 \) and \( n = \frac{1}{2}ab \), or in geometric terms a right-angled triangle with rational sides \( a,b,c \) and area \( n \).
+  Equivalently, we can ask about an arithmetic progression \( \alpha^2 \), \( \beta^2 = \alpha^2 + n \), \( \gamma^2 = \beta^2 + n \).
+  For example, \( n=1 \) is not congruent, as shown by Fermat.
+  On the other hand \( n = 5 \) is congruent, because we can take \( a = \frac{20}{3} \), \( b = \frac{3}{2} \).
+  \begin{proposition}
+    Let \( E_n \) be the elliptic curve given by \( y^2 = x^3 - n^2 x \).
+    Then \( n \) is a congruent number if and only if \( \operatorname{rank} E_n(\mathbb{Q}) > 0 \), i. e. if and only if \( E_n(\mathbb{Q}) \) is infinite.
+  \end{proposition}
+  \textit{Explanation.}
+  If \( (x,y) \) is a rational point on \( E \), then \( a = \frac{x^2 - n^2}{y} \), \( b = 2n \frac{x}{y} \), \( c = \frac{x^2 + n^2}{y} \) realizes \( n \) as a congruent number.
+  This gives a bijection between triples \( (a,b,c) \) realizing \( n \) as a congruent number and \( (x,y) \in E(\mathbb{Q}) \)  such that \( y \neq 0 \).
+  To prove the proposition, we check that \( E_n(\mathbb{Q})_{\text{tors}} \subseteq \left\lbrace y = 0 \right\rbrace \), which strongly uses the exact sequence from before.
+
+  How does \( T_lE \) control \( E(\mathbb{Q}) \)?
+  The function
+  \[ L(E,s) = \prod_{p\text{ prime of good reduction}} \frac{1}{1 - a_p p^{-s} + p^{1-2s}} \prod_{p\text{ prime of bad reduction}} \left( \cdots \right) , \] where \( a_p = p+1 - \# E(\mathbb{F}_p) \).
+  assembles all possible point counts of \( E \) modulo \( p \).
+  \begin{conjecture}[Birch-Swinnerton-Dyer]
+  \( L(E,s) \) has holomorphic continuation to all \( s \in \mathbb{C} \), and \( \operatorname{ord}_{s=1} L(E,s) = \operatorname{rank} E \).
+  \end{conjecture}
+  For the congruent number problem, \( L(E,s) \) is ``easy'' and there exists an explicit formula for \( L(E,1) \) involving some ternary quadratic forms.
+\end{enumerate}
 
 
 %%% Local Variables:

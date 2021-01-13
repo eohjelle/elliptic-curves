@@ -1,0 +1,7 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\tocsection {}{1}{Lecture 1 (Monday 1/11)}}{1}{section.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\tocsubsection {}{1.1}{Why study elliptic curves?}}{1}{subsection.1.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\tocsubsection {}{1.2}{Examples}}{2}{subsection.1.2}% 

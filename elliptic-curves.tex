@@ -1,7 +1,7 @@
 \documentclass{amsart}
 
 % Packages
-\usepackage{amsmath,amsfonts,amsthm,amssymb,mathrsfs}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,mathrsfs,graphicx}
 
 % Lists
 \usepackage[shortlabels]{enumitem}
@@ -17,6 +17,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
@@ -60,6 +61,9 @@
 \usepackage{CJKutf8}
 \newcommand{\yo}{\mbox{\begin{CJK*}{UTF8}{gbsn}よ\end{CJK*}}}
 
+% Custom arrows
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}} % Provides \mapsfrom
+
 % Author and title
 \title{Elliptic curves}
 
@@ -71,6 +75,10 @@ These notes are from a course taught by Professor Bao Le Hung at Nortwestern Uni
 The note taker is responsible for any mistakes or inaccuracies that occur.
 
 \input{lec1}
+\input{lec2}
+\input{lec3}
+\input{lec4}
+\input{lec5}
 
 
 \printbibliography

@@ -1,0 +1,157 @@
+\section{Lecture 3 (Friday 1/15)}
+Last time we showed that the following data are equivalent:
+\begin{enumerate}
+\item \( (E,O) \), where \( E \) is a genus 1 curve and \( O \in E(k) \).
+\item A Wierestrass equation \( Y^2 Z + a_1 XYZ + a_3 XZ^2 =  x^3 + a_2X^2 Z + a_4 X Z + a_6 \) describing a smooth cubic in \( \mathbb{P}^2 \).
+\end{enumerate}
+To go from (1) to (2), we analyzed \( H^0 \left( E, \mathcal{O}(nO) \right) \).
+We took \( x \in H^0 \left( E, \mathcal{O}(2O) \right) \) non-constant, \( y \in H^0 \left( E, \mathcal{O}(3O) \right) \) not in the span of \( 1 \) and \( x \), and from these we produced a Weierstrass equation.
+
+The pair \( (E,O) \) in fact gives rise to many Weierstrass equations. The question is how many?
+The choice of \( y,x,1 \) is well-defined up to replacing \( y \) by \( \alpha y + \beta x + \gamma \) and \( x \) by \( \alpha' x + \beta' \) (with some relation between \( \alpha \) and \( \alpha' \)).
+This substitution turns a Weierstrass equation into another Weierstrass equation (with different coefficients \( a_i \)).
+These substitution corresponds to an action of some subgroup of upper triangular matrices on Weierstrass equations.
+We have a map
+\begin{align*}
+  \left\lbrace (E,O) \right\rbrace/\cong \to \left\lbrace \text{Weierstrass equations} \right\rbrace/\text{action} .
+\end{align*}
+If \( \operatorname{char} k \neq 2,3 \) we can choose a Weierstrass equation with \( a_1 = a_2 = a_3 = 0 \), and the action of changing such Weierstrass equations is just an action of \( k^\times \).
+The map above then takes the form
+\begin{align*}
+  \left\lbrace (E,O) \right\rbrace/\cong \to \left\lbrace (a_4,a_6) \right\rbrace/ k^\times .
+\end{align*}
+For a Weierstrass equation \( y^2 = x^3 + a_4 x + a_6 = f(x) \) the following are equivalent
+\begin{align*}
+  \text{the curve described by the Weierstrass equation is smooth}
+  \iff &  f \text{ and } f' \text{ are coprime}\\
+  \iff & f(x) = (x-\alpha_0)(x-\alpha_1)(x-\alpha_2), \alpha_i \neq \alpha_j \in \overline{k} \\
+  \iff & \Delta = \underbrace{\prod (\alpha_i - \alpha_j)^2}_{\in \mathbb{Z}[a_4,a_6]} \neq 0 .
+\end{align*}
+In fact, \( \Delta = - 16 (4 a_4^3 + 27 a_6^2 ) \).
+We are allowed to substitute
+\[ \left( \alpha y + \beta x + \gamma \right)^2 = \left( \alpha' x + \beta' \right)^3 + a_4 \left( \alpha' x + \beta' \right) + a_6 , \]
+where \( \alpha, \alpha' \neq 0 \).
+In order for this to be a short Weierstrass equation, we need \( \alpha^2 = \alpha'^3 \neq 0 \), \( 2 \alpha \beta = 0 \), \( 2 \alpha \gamma = 0 \), \( 3 \alpha'^2 \beta' = 0 \), and therefore \( \beta = \beta' = \gamma = 0 \).
+So the substition must be of the form \( y \mapsto \alpha y \) and \( x \mapsto \alpha' x \).
+The effect of this substitution on a short Weierstrass equations is to replace \( (a_4,a_6) \) with \( \left( u^{-4} a_4, u^{-6} a_6 \right) \), where \( u^2 = \alpha' \).
+To summarize:
+\begin{proposition}
+  Suppose \( \operatorname{char} k \neq 2,3 \).
+  Then there is a bijection
+  \begin{align*}
+    \left\lbrace (E,O) \right\rbrace/ \cong \to \left\lbrace (a_4,a_6) : 4 a_4^3 + 27a_6^2 \neq 0 \right\rbrace/ k^\times ,
+  \end{align*}
+  where \( u \in k^\times \) acts by \( (a_4,a_6) \) via \( u (a_4,a_6) = \left( u^{-4} a_4, u^{-6} a_6 \right) \).
+\end{proposition}
+We now define a ``universal'' function on the pairs \( (a_4,a_6) \).
+\begin{definition}[\( j \)-invariant]
+  We define
+  \[ j(E) = \frac{1728 a_4^3}{4a_4^3 + 27 a_6^2} . \]
+\end{definition}
+The 1728 is a normalizing factor that you can ignore for now.
+The \( j \)-invariant has the important features that
+\begin{enumerate}
+\item The denominator does not vanish.
+\item It is invariant under the action of \( k^\times \).
+\end{enumerate}
+Hence \( j \) is defined on the sets of the proposition above.
+\begin{remark}
+Without the assumption \( \operatorname{char} k \neq 2,3 \) we can still carry out the above analysis, but it is less pleasant because not every Weierstrass equation is equivalent to a short one.
+\end{remark}
+\begin{proposition}
+  If \( k = \overline{k} \) and \( \operatorname{char} k \neq 2,3 \), then
+  \( j \colon \left( E,O \right) / \cong \to k \)
+  is a bijection.
+\end{proposition}
+\textit{Proof.}
+Let \( E_1, E_2 \) be elliptic curves given by Weierstrass equations \( y^2 = x^3 + a_4 x + a_6 \) and \( y^2 = x^3 + a_4' x + a_6' \), respectively.
+It suffices to show that if \( j(E_1) = j(E_2) = j \), then there is a \( u \in k^\times \) with \( (a_4,a_6) = u(a_4',a_6') \).
+Either the common value \( j = 0 \), in which case \( a_4 = 0 = a_4' \), so with \( u = \left( a_6'/a_6 \right)^{ 1/6} \) we have \( u (a_4',a_6') = (0,u^{-6} a_6') = (0,a_6) = (a_4,a_6) \).
+Or the common value \( j \neq 0 \), in which case the equality of \( j \)-invariants imply that
+\[ \frac{a_6^2}{a_4^3} = \frac{a_6'^2}{a_4'^3} \implies \left( \frac{a_6}{a_6'} \right)^2 = \left( \frac{a_4}{a_4'} \right)^3 . \]
+Taking \( u = \left( \frac{a_4}{a_4'} \right)^{1/4} \), we see that \( \frac{a_6}{a_6'} = \pm u^6 \).
+Adjusting \( u \) by a fourth root of unity, if necessary, we get a \( u \) that works.
+\qed
+
+Note that the above proposition is not true if \( k \neq \overline{k} \):
+There exists \( E_1, E_2 \) such that \( E_1 \not\cong E_2 \) over \( k \), but \( E_1 \cong E_2  \) over \( \overline{k} \).
+In this case, we say that \( E_2 \) is a \textit{twist} of \( E_1 \).
+\begin{example}
+  Let \( E_n : y^2 = x^3 - n^2 \).
+  Then \( E_n \cong E_{n'} \) over \( \mathbb{Q} \) if and only if \( n^2/ n'^2 \in \left( \mathbb{Q}^\times \right)^4 \), if and only if \( n / n' \in \left( \mathbb{Q}^\times \right)^2 \).
+\end{example}
+
+\subsection{Elliptic curves as proper smooth group varieties of dimension 1}
+The goal for the remainder of today is to prove that the data of an elliptic curve \( (E,O) \) is equivalent to the data of a proper smooth group variety of dimension 1.
+
+There are two ways to get a group structure on \( (E,O) \):
+\begin{enumerate}[(A)]
+\item Geometrically by chord and tangent.
+\item By identification of \( E  \)  with \( \operatorname{Pic}^0 E \).
+\end{enumerate}
+We will not follow either approach strictly, but combine the easy parts from both.
+Approach (A) has the merit that it is clearly algebraic, but not obviously a group operation.
+Method (B) has the opposite problem, namely that it is obviously a group, but not necessarily given by regular functions.
+The path with minimal resistance is to define both operations and check that they are equal. The common operation is then algebraic and a group operation.
+
+For method (A), consider the example of \( y^2 = x^3 + x \).
+\todo[inline]{Insert picture}
+The group operation is given as follows. Given closed points \( P, Q \in E \), let \( l_{PQ} \) be the line in \( \mathbb{P}^2 \) passing through \( P,Q \). Then \( l_{PQ} \cap E \) consists of three points: \( P,Q \) and another point \( R' \). Now the line passing through \( R' \) and \( O \) again intersects \( E \) in three points \( O, R', R \), and we define \[ P \oplus Q = R . \]
+The resulting map \( \left( P,Q \right) \mapsto P \oplus Q \) is clearly algebraic, as we will now show.
+Let \( P = (x_1,y_1) \) and \( Q = (x_2,y_2) \). Then \( l_{PQ} : y =\lambda x + \mu \), where \( \lambda = \frac{y_2 - y_1}{x_2 - x_1} \) and \( \mu = y_1 - \lambda  \).
+To get the third point \( R' \), note that \( x(R') \) is the third root of
+\( (\lambda x + \mu)^2 = x^3 + a_4 x + a_6 . \)
+This has roots \( x_1,x_2 \) by design, so \[ x(R') = - x_1 - x_2 + \lambda^2 . \]
+And \( y =\lambda x +\mu \), so this is clearly algebraic.
+
+For method (B), we will define an operation on \( E( \overline{k} ) \).
+\begin{proposition}
+  The Abel-Jacobi map
+  \begin{align*}
+    \operatorname{AJ} \colon E( \overline{k}) & \to \operatorname{Pic}^0 E = \left\lbrace \mathcal{L} \text{ line bundle on } E_{\overline{k}} \right\rbrace / \text{iso} \\
+    P & \mapsto \mathcal{O} \left( P-O \right)
+ \end{align*}
+  is a bijection.
+\end{proposition}
+\begin{remark}
+  If \( C \) is a positive genus curve, and \( O \in C \), then we can define the Abel-Jacobi map in the same way as above, and it is always an injection.
+  In fact, the reason why the Abel-Jacobi map is not manifestly algebraic is that \( \operatorname{Pic}^0 C \) is only an abstract group.
+  It is a fact that one can promote the Picard group \( \operatorname{Pic}^0 C \) to a group variety, and the general theory will tell you that the Abel-Jacobi map is a closed embedding.
+  But it is never a bijection if the \( C \) has genus \( g>1 \).
+\end{remark}
+\textit{Proof.} For injectivity, suppose \( P , Q \in E( \overline{k} ) \) with the properties that \( \mathcal{O} \left( P - O \right) \cong \mathcal{O} \left( Q - O \right) \). Then \( \mathcal{O} \left( P - Q \right) \cong \mathcal{O}_E \), so \( H^0 \left( E_{\overline{k}},\mathcal{O} \left( P - Q \right) \right) = \overline{k} \).
+So there exists \( f \in K(E) \) such that \( \operatorname{div} (f) + P - Q \geq 0 \).
+But the \( \operatorname{deg} f = 0 \), so the map \( f \colon E \to \mathbb{P}^1 \) has \( f^{-1} \left\lbrace 0 \right\rbrace = \left\lbrace Q \right\rbrace \) and \( f^{-1} \left\lbrace \infty \right\rbrace = \left\lbrace P \right\rbrace \), both the zero and pole of multiplicity one.
+This tells you that \( f \) is an isomorphism, because \( f \) is of degree 1. This is a contradiction.
+
+For surjectivity, let \( \mathcal{L} = \mathcal{O}(D) \) with \( \operatorname{deg} D = 0 \).
+We need to find \( P \) such that \( \mathcal{L} \cong \mathcal{O} \left( P-O \right) \).
+Consider \( \mathcal{O} \left( D + O \right) \), which is of degree \( 1 \).
+By Riemann-Roch, using the fact that \( E \) has genus 1,
+\( \operatorname{dim}H^0 \left( E,\mathcal{O}(D+O) \right) = 1 \).
+So there exists \( f \in K(E) \) such that \( \operatorname{div} f + D + O \geq 0 \).
+The degree of this divisor is 1, so the only possibility is that \( \operatorname{div} f + D + O = P \) for some \( P \in E( \overline{k} ) \).
+This tells you that \( \mathcal{O}(D) \cong \mathcal{O}(P-O) \).
+\qed
+
+The conclusion is that we have a group operation on \( E( \overline{k} ) \) characterized by \( R = P \oplus Q \) if and only if \( \mathcal{O} \left( R-O \right) \cong \mathcal{O}\left( P-O \right) \otimes \mathcal{O} \left( Q-O \right) \), if and only if \( \mathcal{O} \left( P + Q - R \right) \cong \mathcal{O}(3O) \).
+Equivalently, the group operation is characterized by \( P \oplus Q \oplus R' = 0 \) if and only if \( \mathcal{O} \left( P + Q + R' \right) \cong \mathcal{O}(3O) \).
+
+It remains to check that the operation \( \left( P,Q \right) \mapsto P \oplus_B Q \) coincides with \( \left( P,Q \right) \mapsto P \oplus_A Q \).
+The operation \( \oplus_A \) is characterized by the property that \( P \oplus_A Q \oplus_A R' = 0 \) if and only if \( P,Q,R \) are colinear.
+\todo[inline]{Insert picture}
+Recall the embedding \( E \hookrightarrow \mathbb{P} \left( H^0 \left( E, \mathcal{O}(3O) \right) \right) \).
+A global section of \( H^0 \left( E, \mathcal{O}(3O) \right) \) describes a hyperplane \( H \) in this projective space.
+Now \( E \cap H \) is the zero locus of the corresponding section, and any two such intersections are linearly equivalent, because the ratio of two global sections is a meromorphic function.
+Thus, \( P,Q,R \) are colinear in \( \mathbb{P}^2 \) if and only if \( P+Q+R = \operatorname{div} f + 3O \).
+
+
+For the remainder, let us sketch why a proper smooth group variety of dimension 1 must have genus 1.
+The idea is that for a Lie group, the tangent bundle is trivial, because given a basis for the tangent space at a point can be translated using the group operation to a basis for the tangent space at any other point.
+If \( G \) is a curve which is a group, the algebro geometric version of this statement is that \( \Omega^1_G \cong \mathcal{O}_G \), or equivalently the tangent sheaf \( \left( \Omega^1_G \right)^\vee \) is trivial.
+And the genus is the dimension of global sections of that, which is 1.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "elliptic-curves"
+%%% End:

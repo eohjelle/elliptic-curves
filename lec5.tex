@@ -1,0 +1,167 @@
+\section{Lecture 5 (Friday 1/22)}
+Last time we introduced the notion of an \textit{isogeny} of elliptic curves, which is a map of curves \( \phi \colon E \to E' \) such that \( \phi(O)=O' \). There is a unique constant isogeny with \( \phi(E) = O' \), and a non-constant isogeny \( \phi \colon E \to E' \) is automatically surjective, finite, and flat.
+
+By rigidity an isogeny is automatically a group homomorphism: \( \phi( P \oplus Q) = \phi(P) \oplus \phi(Q) \).
+A consequence of this is that  \[ \ker \phi = \phi^{-1} \left\lbrace O' \right\rbrace = E \times_{E'} O' \]
+is a subgroup of \( E \).
+Another consequence is that a non-constant isogeny is ``homogeneous'', in the sense that for any \( x \in E' \) we have \( \phi^{-1}  x \cong \phi^{-1} O \), with the isomorphism being realized by translation by a point \( y \in E \) with \( \phi(y) = x \).
+In particular, if \( \phi \) is ramified at some point, then \( \phi \) is ramified everywhere.
+This can't happen in characteristic zero, but as we saw last time the Frobenius is such a everywhere ramified isogeny in characteristic \( p \).
+\begin{remark}
+  Any map of curves \( \phi \colon E \to E' \) can be factored as \( \phi = \text{translation} \circ \text{isogeny} \).
+  In particular, \( \operatorname{Aut}_{\text{curve}}(E) = E \rtimes \operatorname{Aut}_{\text{group variety}} (E) \).
+\end{remark}
+Recall the definition of an (in)separable isogeny \( \phi \colon E \to E' \): it is an isogeny for which the corresponding field extension \( \phi^* \colon K(E') \hookrightarrow K(E) \) is (in)separable.
+\begin{proposition}
+  Let \( \phi \colon E \to E' \) be a non-constant isogeny. The following are equivalent:
+  \begin{enumerate}
+  \item \( \phi \) is separable.
+  \item \( \phi \) is unramified, i. e. \'etale.
+  \item \( d \phi _O \colon T_O E \to T_{O'} E \) is an isomorphism.
+  \item \( \# \ker \phi ( \overline{k} ) = \operatorname{deg} \phi \), i. e. \( \ker \phi \) is reduced.
+  \item \( \overline{k}(E) / \phi^* \overline{k}(E) \) is a Galois extension (with Galois group \( \ker \phi( \overline{k} ) \)).
+  \end{enumerate}
+\end{proposition}
+\textit{Proof.}
+\textit{(2) is equivalent to (3).}
+Let \( y \in E \), \( x = \phi(y) \), and let \( \pi_y, \pi_x \) be uniformizers at \( y,x \).
+Then there exists an integer \( e \) such that \( \phi^* \pi_x = \text{unit} \cdot \pi_y^e \), and \( \phi \) being unramified at \( y \) means that \( e = 1 \).
+We have to check that \( \phi \) is unramified at \( O \) if and only if \( d \phi_O \neq 0 \).
+But \( d \phi_O \) is dual to \( \phi^* \colon \pi_{O'} / \pi_{O'}^2 \to \pi_O / \pi_O^2 \), so \( e > 1 \) if and only if \( d \phi_O = 0 \).
+Once \( \phi \) is unramified at \( O \), \( \phi \) is unramified everywhere by using translations.
+
+\textit{(2) implies (4).}
+If \( \phi \) is unramified, then \( \# \phi^{-1} \left\lbrace x \right\rbrace = \deg \phi \), because the degree counts the number of points in the fiber with multiplicity, and being unramified means that there is no multiplicity.
+
+\textit{(4) implies (5).}
+We have seen that \( \overline{k}(E) / \phi^* \overline{k}(E') \) is an extension of degree \( \operatorname{deg} \phi \).
+Note that translation by \( p \in \ker \phi ( \overline{k} ) \), denoted \( t_p \), induces an automorphism of the map \( \phi \):
+\[
+\begin{tikzcd}
+  E \arrow[rr,"t_p","\cong"'] \arrow[dr,"\phi"'] & & E \arrow[dl,"\phi"] \\
+  & E' .
+\end{tikzcd}
+\]
+Therefore, we get a map \( G = \ker \phi( \overline{k} ) \to \operatorname{Aut} \left( \overline{k}(E) / \phi^* \overline{k}(E) \right) \).
+Distinct \( p \) induces different automorphisms, so this map is injective.
+The order of \( G \) is \( \operatorname{deg} \phi \), which is the order of the extension \( \overline{k}(E) / \phi^* \overline{k}(E) \), so \( G \) must be an isomorphism and the extension Galois.
+
+\textit{(5) implies (1).}
+Clear, because Galois extensions are separable.
+
+\textit{(1) implies (2)/(3).}
+Note that \( \phi \) being separable is equivalent to the preimage of the generic point \( \phi^{-1} \left\lbrace \overline{k}(E') \right\rbrace \) being reduced. This is because in general, a finite extension \( \operatorname{Spec} L \to \operatorname{Spec} K \), then \( L/K \) is separable if and only if \( L \otimes_K \overline{K} \) is reduced.
+So if \( \phi \) is separable, then it is unramified at the generic point, and therefore unramified everywhere.
+
+Alternatively, \( \phi \) being separable is equivalent to the trace pairing \( \overline{k}(E) \otimes \overline{k}(E) \to \phi^* \overline{k}(E')  \) being non-degenerate.
+Once this is non-degenerate, we can find an affine open \( \operatorname{Spec} R \subseteq E' \) with inverse image \( \operatorname{Spec} S \subseteq E \) such that \( \operatorname{tr} \colon R \otimes R \to S \) is also non-degenerate, i. e. \( \operatorname{disc}_{R/S} \in S^\times \). \qed
+
+\begin{corollary}
+  The multiplication by \( n \) map \( [n] \colon E \to E \) is a separable isogeny if and only if \( n \) is coprime to \( \operatorname{char } k \).
+\end{corollary}
+\textit{Proof.} Let \( m \colon E \times E \to E \)  be the multiplication map.
+Then
+\begin{align*}
+  dm_{(O,O)} \colon T_O E \times T_O E & \to T_O E \\
+  (u,v) & \mapsto u + v
+\end{align*}
+is the addition map, because it is linear and restricts to the identity on \( T_O E \times 0 \) and \( 0 \times T_O E \).
+It follows that \( d[n]_O  \) is precisely multiplication by \( n \). \qed
+
+Note that we don't know yet when \( [n] \) is non-constant if \( \operatorname{char} k  \) divides \( n \).
+\begin{remark}
+  The proof of the above proposition shows that
+  \begin{align*}
+    \left\lbrace \text{separable isogenies } \phi \colon E \to E' \text{ over } \overline{k} \right\rbrace & \cong \left\lbrace \text{finite subgroups } G \subseteq E( \overline{k} ) \right\rbrace \\
+    \left\lbrace \text{separable isogenies } \phi \colon E \to E' \text{ over } k \right\rbrace & \cong \left\lbrace \begin{array}{l} \text{finite subgroups } G \subseteq E( \overline{k} ) \text{ which are} \\
+                                                                                                                       \text{stable under the action of } \operatorname{Gal} ( \overline{k}/k ) \end{array}  \right\rbrace \\
+    \phi & \mapsto \ker \phi ( \overline{k} ) \\
+    \overline{k}(E) / \overline{k}(E)^G & \mapsfrom G .
+  \end{align*}
+  Actually, this bijection can be extended to cover inseparable isogenies as well, if you enhance the right hand side to finite subgroup schemes \( G \subseteq E \).
+  (The reason is that \textit{reduced} schemes are determined by \( \overline{k} \)-points.)
+  The main subtelty in this correspondence is that given \( G \subseteq E \) a finite subgroup scheme, we need to construct the categorical quotient \( E' = E/G \).
+  In particular, this gives a convenient way to check when something factors through \( \varphi \colon E \to E/G \).
+  That is, a map \( f \colon E \to C \) factors through \( \varphi \) if and only if \( f(x+p) f(x) \) for all \( p \in \ker \phi \).
+  Note that \( E/G \) is necessarily of genus 1, because \( \chi(E) = \operatorname{deg} \varphi \chi(E/G) = 0 \).
+\end{remark}
+\begin{definition}
+  Define \( \operatorname{Hom} \left( E,E' \right) = \left\lbrace \text{isogenies } \varphi \colon E \to E' \right\rbrace \) and \( \operatorname{End}(E) = \left\lbrace \text{isogenies } \varphi \colon E \to E \right\rbrace \).
+  These inherit a group structure from the target, and moreover \( \operatorname{End}(E) \) is a ring.
+  Also, define \( \operatorname{Hom}^0 \left( E,E' \right) = \operatorname{Hom} \left( E,E' \right) \otimes_{\mathbb{Z}} \mathbb{Q} \) and \( \operatorname{End}^0 \left( E \right) = \operatorname{End}(E) \otimes_{\mathbb{Z}} \mathbb{Q} \).
+\end{definition}
+\begin{proposition}
+  \( \operatorname{End}^0 \left( E \right) \) is a characteristic zero domain.
+\end{proposition}
+\textit{Proof.}
+It is clear that this is a domain, because \( \operatorname{deg} \colon \operatorname{End}(E) \to \mathbb{Z}_{\geq 0} \) is multiplicative and \( \operatorname{deg} \phi = 0 \) if and only if \( \operatorname{deg} \phi \) is constant.
+That it is characteristic zero means that \( [n] \neq 0 \) for all \( n \in \mathbb{Z}_{>0} \).
+The ``immoral'' proof of this fact is the following. We already showed that \( \operatorname{deg} [2] = 4 \).
+Suppose that \( [n] = 0 \). Then we can factor out powers of 2 dividing \( n \), and assume that \( n \) is odd.
+But then \( n \) divides some \( 2^M - 1 \), in which case \( [2^M] = [1] \), which is a contradiction because the degrees don't match. \qed
+
+At this point, we don't know what \( \operatorname{deg} [n] \) is!
+It turns out that \( \operatorname{deg}[n] = n^2 \).
+To show this, we need to analyze the effect of isogenies on line bundles.
+
+The basic question is the following: Given an isogeny \( \phi \colon E \to E' \), what does \( \phi^* \colon \operatorname{Pic} E' \to \operatorname{Pic} E \) do?
+This is not obvious!
+\[ \phi^*\mathcal{O}(x) = \mathcal{O}(\phi^{-1} x)) ??? \]
+In particular,
+\[ \left( \phi + \psi \right)^* \mathcal{O}(x) = \mathcal{O} \left( (\phi + \psi)^{-1} \left\lbrace x \right\rbrace \right) ??? \]
+This does not interact nicely with \( \phi^{-1} \left\lbrace x \right\rbrace \) and \( \psi^{-1} \left\lbrace x \right\rbrace \).
+There is one fundamental fact that allows you to deal with this for elliptic curves and more generally abelian varieties.
+\begin{theorem}[of the Square]
+  If \( \phi, \psi \colon E \to E' \) and \( \mathcal{L} \in \operatorname{Pic}(E') \), then
+  \[ (\phi + \psi)^* \mathcal{L} \otimes (\phi - \psi)^* \mathcal{L} \cong (\phi^* \mathcal{L})^{\otimes 2} \otimes \psi^* \mathcal{L} \otimes (-\psi)^* \mathcal{L}. \]
+\end{theorem}
+\begin{remark}
+  This is actually a consequence of the Theorem of the Cube.
+  In higher dimensions, the proof of the Theorem of the Square is to prove the Theorem of the Cube.
+\end{remark}
+\begin{remark}
+  The Theorem of the Square will be crucial to understand the effect of \( (\phi + \psi)^* \).
+\end{remark}
+\begin{remark}
+  Why is it called the Theorem of the Square? Because \( \phi^* \) is like a quadratic function, and the Theorem of the Square is like the parallelogram law: \( (\phi + \psi)^2 + (\phi + \psi)^2 = 2 \phi^2 + \psi^2 + (-\psi)^2 \).
+\end{remark}
+\begin{corollary}
+  \begin{enumerate}
+  \item If \( \mathcal{L} \) is symmetric, meaning that \( [-1]^* \mathcal{L} \cong \mathcal{L} \), then \( [n]^* \mathcal{L} \cong \mathcal{L}^{\otimes n^2} \).
+  \item If \( \mathcal{L} \) is anti-symmetric, meaning that \( [-1]^* \mathcal{L} \cong \mathcal{L}^{\otimes (-1)} \) (and which turns out to be equivalent to \( \operatorname{deg} \mathcal{L}\geq 0 \)), then \( (\phi + \psi)^* \mathcal{L} \cong \phi^* \mathcal{L} \otimes \psi^* \mathcal{L} \).
+  \end{enumerate}
+\end{corollary}
+\textit{Proof.}
+\begin{enumerate}
+\item If \( \phi = [n] \) and \( \psi = [-1] \), the Theorem of the Square becomes
+  \[ [n+1]^*\mathcal{L} \otimes [n-1]^* \mathcal{L} \cong ([n]^* \mathcal{L})^{\otimes 2} \otimes \mathcal{L}^{\otimes 2} . \]
+  In particular, for \( n = 1 \), we see that
+  \( [2]^* \mathcal{L} \cong \mathcal{L}^{\otimes 4} \),
+  and inductively we can show that \( [n]^* \mathcal{L} \cong \mathcal{L}^{\otimes n^2} \).
+
+  What does this have to do with the degree of \( \phi \)? Simply apply the above to a symmetric line bundle of positive degree. For example, if \( \mathcal{L} = \mathcal{O}(P) \), we can ``symmetrize'' this line bundle by considering
+  \[ \mathcal{L} \otimes [-1]^* \mathcal{L} \cong \mathcal{O} \left( P + \left( \ominus P \right) \right) , \]
+  which has degree 2. So we can take a symmetric line bundle \( \mathcal{L} \) of positive degree, and then
+  \[ \operatorname{deg} \phi \operatorname{deg} \mathcal{L} = \operatorname{deg} \phi^* \mathcal{L} = \operatorname{deg} \mathcal{L}^{\otimes n^2} = n^2 \operatorname{deg} \mathcal{L}, \]
+  so \( \operatorname{deg} \phi = n^2 \).
+  \begin{remark}
+    For an abelian variety of dimension \( d \), \( \operatorname{deg} [n] = n^{2d} \).
+  \end{remark}
+\item If \( \mathcal{L} \) is anti-symmetric, then
+  \[ - \operatorname{deg} \mathcal{L} = \operatorname{deg} \mathcal{L}^{-1} = \operatorname{deg}[-1]^* \mathcal{L} = \operatorname{deg} \mathcal{L} , \]
+  so \( \operatorname{deg} \mathcal{L} = 0 \).
+  (The converse is also true for elliptic curves, because \( [-1]^* \mathcal{O}(P-O) \cong \mathcal{O}((\ominus P)-O) \cong \mathcal{O}(P-O)^{\otimes (-1)} . \))
+  The Theorem of the Square in this case becomes
+  \[ (\phi + \psi)^* \mathcal{L} \otimes (\phi - \psi)^* \mathcal{L} \cong (\phi^* \mathcal{L})^{\otimes 2} . \]
+  If \( A = \phi + \psi \) and \( B = \phi - \psi \) this says that
+  \[ A^* \mathcal{L} \otimes B^* \mathcal{L} \cong \left( \frac{A+B}{2} \right)^* \mathcal{L} . \]
+  What does it take for arbitrary \( A,B \) to be of the above form? If we can divide by 2, we could set \( \phi = \frac{A+B}{2} \) and \( \psi = \frac{A-B}{2} \).
+  So (2) is at least true for \textit{even} \( A,B \), meaning for \( A,B \) of the form \( A = 2 A' \) and \( B = 2B' \).
+  But this implies the statement in general, because for \textit{arbitrary} \( A,B \), we have \( (2A+2B)^* \mathcal{L} \cong (2A)^* \mathcal{L} \otimes (2B)^* \mathcal{L} \), we know the effect of multiplying by 2, and since multiplication by 2 is surjective any degree zero line bundle \( \mathcal{L} \cong \mathcal{O}\left( P-O \right) \) has a square root, that is there is a line bundle \( \mathcal{L}' \) such that \( \mathcal{L} \cong \left( \mathcal{L}' \right)^{\otimes 2} \). \qed
+\end{enumerate}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "elliptic-curves"
+%%% End:

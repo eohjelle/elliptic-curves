@@ -1,0 +1,194 @@
+\section{Lecture 2 (Wednesday 1/13)}
+Last time, we outlined the basic material. Today, we start proving things.
+
+There are three characterizations of what an elliptic curve is. Let \( k \) be a field. When convenient we will make the simplifying assumption that the characteristic of \( k \) is 2 or 3.
+\begin{proposition}
+  There are three equivalent ways of defining an elliptic curve:
+  \begin{enumerate}[(A)]
+  \item As a smooth projective genus 1 curve \( E \), with a rational point \( O \in E(k) \).
+  \item As plane cubic given by the equation \[ Y^2 Z + a_1 XYZ + a_3 YZ^2 = X^3 + a_2 X^2 Z + a_4 XZ^2 + a_6 Z^3 \]
+    in \( \mathbb{P}^2 \), where \( a_i \in k \) and discriminant \( \Delta \left( a_1,a_2,a_3,a_4,a_5,a_6 \right) \neq 0 \).
+    (The point \( O \) corresponds to \( [0:1:0] \).)
+  \item \( (E,O) \) is a proper group variety of dimension 1 with identity \( O \).
+    (Recall that a group variety is a variety with group structure such that multiplication and inversion are algebraic maps, i. e. a group object in a certain category.)
+  \end{enumerate}
+\end{proposition}
+Last time we started with (B), which is the most concrete.
+Today we will establish the equivalence of (A) and (B), which is the study of projective geometry of genus 1 curves.
+The equivalence of (A), (B), and (C) will be established next time.
+%To show that (1) is equivalent to (3) we must prove two things, namely that a smooth projective genus 1 curve with a rational point has a group structure, and the only proper group variety in dimension 1 must be of genus 1.
+
+The general way to study a smooth projective curve is to map it into projective space, and such a map is given by a line bundle with a generating set of global sections.
+
+\subsection{Reminder on projective geometry of curves}
+If \( C \) is a smooth projective curve, \( v \in C \) a closed points, we can measure the order of functions on \( C \) along \( v \) using that \( \mathcal{O}_{C,v} \) is a DVR.
+We have
+\[ \operatorname{Prin}(C) = \left\lbrace \operatorname{div} f , f \in K(C) \right\rbrace \subset \operatorname{Div}(C) = \bigoplus_{v \text{ closed point}} \mathbb{Z}v,  \]
+where \( K(C) \) is the field of rational functions on \( C \), i. e. functions that are defined away from finitely many points, and \( \operatorname{div}(f) = \sum_{v \in C} \operatorname{ord}_vf v \).
+The class group of \( C \) is \( \operatorname{Cl}(C) = \operatorname{Div}(C) / \operatorname{Prin}(C) \), and there is a degree map
+\( \operatorname{deg} \colon \operatorname{Cl}(C) \to \mathbb{Z} \) given by \( \sum n_v v \mapsto \sum n_v  \).
+In our situation there is an isomorphism \( \operatorname{Cl}(C) \cong \operatorname{Pic}(C) \), where \( \operatorname{Pic}(C) \) is the Picard group of isomorphism classes of line bundles on \( C \).
+Via this isomorphism, a divisor \( D \in \operatorname{Cl}(C) \) corresponds to the line bundle \( \mathcal{O}(D) \) given by
+\[ \mathcal{O}(D) (U) = \left\lbrace f \in K(C) : \operatorname{div}(f) + D \geq 0 \right\rbrace \cup \left\lbrace 0 \right\rbrace . \]
+
+For doing projective geometry the Picard group \( \operatorname{Pic}(C) \) is important because it ``controls'' maps of \( C \) into projective space.
+The reason is that if we have a set of elements \( s_0,s_1,\dots,s_d \in H^0 \left( C,\mathcal{L} \right) \) that generate \( \mathcal{L} \), we get a map
+\begin{align*}
+  C & \to \mathbb{P}^d \\
+  v & \mapsto \left[ s_0(v) : \cdots : s_d(v) \right] .
+\end{align*}
+Although the value \( s_i(v) \) is not well-defined, the common ratio of the \( s_i(v) \) is well-defined as an element of \( \mathbb{P}^d \).
+The way this could go wrong is if all the \( s_i \) vanish at a point, but the assumption that they generate \( \mathcal{L} \) is precisely the condition that this doesn't happen.
+\begin{remark}
+  More intrinsically, we get a map to projective space by sending \( v \in C \) to the hyperplane of sections in \( H^0 \left( C,\mathcal{L} \right) \) vanishing at \( v \). Depending on conventions, this is a map \( C \to \mathbb{P} \left( H^0 \left( C, \mathcal{L} \right) \right) \) or \( C \to \mathbb{P} \left( H^0 \left( C, \mathcal{L} \right)^\vee \right) \).
+\end{remark}
+
+Because of the relation between line bundles and maps to projective space, the dimension of \( H^0 \left( C, \mathcal{L} \right) \) gives an upper bound for the dimension \( d \) of projective space that we can map into.
+Riemann-Roch provides the main tool for computing the dimension of global sections of line bundles.
+
+If \( \mathcal{F} \) is a sheaf on \( C \), then the Euler characteristic is
+\[ \chi(\mathcal{F}) = \operatorname{dim} H^0 \left( C,\mathcal{F} \right) - \operatorname{dim} H^1 \left( C, \mathcal{F} \right) . \]
+The cohomology groups \( H^i \left( C, \mathcal{F} \right) \) are finite dimensional over \( k \) because \( C \) is projective, and vanish for \( i > 1 \) because \( C \) is a curve.
+
+The Euler characteristic \( \chi \) is additive on short exact sequences of sheaves.
+For example, if \( v \in C \) is a closed point there is an exact sequence \( 0 \to \mathcal{O}_C \to \mathcal{O}(v) \to k_v \to 0 \), where \( k_v \) is the skyscraper sheaf with value \( k \) supported at \( v \), so \( \chi(\mathcal{O}(v)) = \chi( \mathcal{O}_C ) + \operatorname{deg}v \).
+More generally, \begin{equation} \label{eq:riemann-roch-1} \chi(\mathcal{O}(D)) = \chi(\mathcal{O}_C) + \operatorname{deg} D . \end{equation}
+
+Whereas additivity of Euler characteristics is purely formal, \textit{Serre duality} is a fundamental fact which says that
+\begin{equation} \label{eq:serre-duality} H^1 \left( C,\mathcal{L} \right) \cong H^0 \left( C, \Omega^1 \otimes \mathcal{L}^{-1} \right)^\vee,  \end{equation}
+where \( \Omega^1 \) is the sheaf of differentials.
+
+Combining Equations (\ref{eq:riemann-roch-1}) and (\ref{eq:serre-duality}),
+\begin{align*}
+  \label{eq:riemann-roch-2}
+  \operatorname{dim}_k H^0 \left( C, \mathcal{O}(D) \right) - \operatorname{dim}_k H^0 \left( C, \Omega^1 \otimes \mathcal{O}(-D) \right)
+  =  \chi(\mathcal{O}(D))
+  = \chi(\mathcal{O}_C) + \operatorname{deg} D
+  = 1 - g + \operatorname{deg} D , && \mbox{(Riemann-Roch)}
+\end{align*}
+where \( g = \operatorname{dim} H^1 \left( C,\mathcal{O}_C \right) = \operatorname{dim} H^0 \left( C, \Omega^1 \right) \) is the \textit{genus} of \( C \).
+\begin{remark}
+If \( C \) is a proper curve, but not necessarily smooth, then everything above works except for Serre duality.
+The number \( \operatorname{dim} H^1 \left( C,\mathcal{O}_C \right) \) is the \textit{arithmetic genus} of \( C \).
+\end{remark}
+In order to apply Riemann-Roch, we will use:
+
+\textbf{Easy fact.}  If \( \operatorname{deg} \mathcal{L} \leq 0 \) and \( \mathcal{L} \not\cong \mathcal{O}_C \), then \( \operatorname{dim} H^0 \left( C,\mathcal{L} \right) = 0 \).
+
+\subsection{Back to elliptic curves}
+Let \( E \) be a genus 1 smooth projective curve, and \( O \in E(k) \).
+The idea of going from (A) to (B) is to study maps from \( E \) into projective space determined by sections of the line bundles \( \mathcal{O}(nO) \).
+Being genus 1 implies that
+\begin{enumerate}[(i)]
+\item Riemann-Roch becomes \( \operatorname{dim}_k H^0 \left( E, \mathcal{O}(nO) \right) - \operatorname{dim}_k H^0 \left( E, \Omega^1 \otimes \mathcal{O}(-nO)  \right) = n .  \)
+\item We have \( \Omega^1 \cong \mathcal{O}_C \).  This is because first of all, \( \operatorname{dim} H^0 \left( E, \Omega^1 \right) = g = 1 \), and second, because by Riemann-Roch \( \operatorname{deg} \Omega^1 = 2g - 2 = 0 \). Hence the statement follows from the ``easy fact''.
+\end{enumerate}
+Combining (i) and (ii), we obtain
+\( \operatorname{dim}_k H^0 \left( E, \mathcal{O}(nO) \right) - \operatorname{dim}_k H^0 \left( E, \mathcal{O}(-nO) \right) = n . \)
+Using the ``easy fact'' that \( H^0 \left( E, \mathcal{O}(D) \right) = 0 \) if \( \operatorname{deg} D < 0 \), it follows that
+\[ \operatorname{dim}_k H^0 \left( E, \mathcal{O}(nO) \right) =
+  \begin{cases}
+    1, & n = 0, \\
+    n, & n > 0 .
+  \end{cases}
+\]
+Note that \( H^0 \left( E, \mathcal{O}(0 O) \right) \subseteq H^0 \left( E, \mathcal{O}(O) \right) \subseteq H^0 \left( E, \mathcal{O}(2O) \right) \subseteq \cdots \).
+The constant function \( 1 \in H^0 \left( E, \mathcal{O}(0) \right) \) is a non-zero element.
+Since \( H^0 \left( E, \mathcal{O}(2O) \right) \) has dimension 2 there is an element \( x \in H^0 \left( E, \mathcal{O}(2O) \right) \) that is not a scalar multiple of 1.
+And since \( H^0 \left( E, \mathcal{O}(3O) \right)  \) has dimension 3 there is an element \( y \in H^0 \left( E, \mathcal{O}(3O) \right) \) that is not a linear combination of 1 and \( x \).
+
+\begin{claim}
+  \label{res:E-is-cubic-claim}
+  The map
+\begin{align*}
+  E & \to \mathbb{P}^2 \\
+  v & \mapsto \left[ x(v) : y(v) : 1 \right]
+\end{align*}
+is an embedding, and the image is a smooth plane cubic given by a Weierstrass equation.
+\end{claim}
+
+There are two things to check, namely that the map is an \textit{embedding} and that the image is a smooth plane cubic.
+
+To guess the image, we find relations between monomials in \( x,y,1 \).
+In this case, the target projective space is 2-dimensional, so to identify the image it will suffice to find one relation, as this cuts out a 1-dimensional object.
+
+Note that \( x^3,x^2,x,y,y^2,xy,1 \in H^0 \left( E, \mathcal{O}(6O) \right) \).
+So we have 7 elements of a 6-dimensional space, so there exists a non-trivial linear relation between them.
+Because pole orders are distinct except for \( x^3, y^2 \), this relation has to involve \( x^3 \) and \( y^2 \).
+After rescaling \( x,y \), we can make this relation of the form
+\[ y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6 . \]
+\begin{remark}
+  This linear relation is essentially unique, because if we throw out \( x^3 \) or \( y^2 \) the remaining elements constitute a basis.
+\end{remark}
+Let \( \widetilde{E} \) denote the plane cubic described by this Weierstrass equation.
+In order to establish Claim \ref{res:E-is-cubic-claim}, it remains to show that
+\begin{enumerate}[(i)]
+\item \( \widetilde{E} \) is smooth,
+\item The map \( \pi \colon E \to \widetilde{E} \) is an isomorphism.
+\end{enumerate}
+To do this, we have to do one basic computation. The idea is to first show that \( \pi \) is birational, and then compute the arithmetic genus.
+\begin{claim}
+  \( \pi \) is birational, i. e. induces an isomorphism of function fields.
+\end{claim}
+\textit{Proof.}
+To prove this claim, we compute the (scheme-theoretic) fiber of a point \( [0:1:0] \in \widetilde{E} \).
+An affine chart around \( [0:1:0] \) is \( \left[ \frac{X}{Y} : 1 : \frac{Z}{Y} \right] \), so \( \widetilde{E} \) in this chart is given by
+\[ \frac{Z}{Y} + a_1 \frac{X}{Y} \frac{Z}{Y} + a_3 \left( \frac{Z}{Y} \right)^2 = \left( \frac{X}{Y} \right)^3 + a_2 \left( \frac{X}{Y} \right)^2 \frac{Z}{Y} + a_4 \frac{X}{Y} \left( \frac{Z}{Y} \right)^2 + a_6 \left( \frac{Z}{Y} \right)^3 . \]
+The term \( \frac{Z}{Y} \) is linear whereas the other terms are quadratic or cubic, and this implies that the point \( [0:1:0] \) is smooth.
+The inverse image \( \pi^{-1} \left\lbrace [0:1:0] \right\rbrace  \) is the locus in \( E \) where \( \frac{x}{y} \) and \( \frac{1}{y} \) has zeros.
+By construction, \( y \) only has poles at \( O \), and therefore \( \pi^{-1} \left\lbrace [0:1:0] \right\rbrace = \lbrace O \rbrace \).
+There is no multiplicity because \( \operatorname{ord}_O \frac{x}{y} = \operatorname{ord}_O x - \operatorname{ord}_O y = 1 \).
+This shows that \( \pi \) is birational.
+\qed
+
+There are now two ways to proceed.
+Silverman's approach is to show that a singular plane cubic is birational to \( \mathbb{P}^1 \), which is a contradiction because \( E \) is a genus 1 curve which is not birational to \( \mathbb{P}^1 \).
+The map \( \pi \) is finite, so we have a short exact sequence of structure sheaves
+\[
+0 \to \mathcal{O}_{\widetilde{E}} \to \pi_* \mathcal{O}_E \to \text{skyscrapers} \to 0 ,
+\]
+the cokernel being a sum of skyscraper sheaves since \( \pi \) is birational (and the first map is an isomorphism over an open set).
+Since \( \pi \) is finite, cohomology commutes with \( \pi_* \), so in particular \( \chi( \pi_* \mathcal{O}_E ) = \chi( \mathcal{O}_E ) = 1-1 = 0 \).
+Additivity of Euler characteristics applied to the short exact sequence yields
+\[ \chi( \mathcal{O}_{\widetilde{E}} ) + \chi( \text{skyscrapers} ) =  \chi( \pi_* \mathcal{O}_E ) = 0 . \]
+On the other hand, there is a short exact sequence
+\[ 0 \to \mathcal{O}_{\mathbb{P}^2} \left( -3 \right) \to \mathcal{O}_{\mathbb{P}^2} \to i_* \mathcal{O}_{\widetilde{E}} \to 0 , \]
+where the first map is multiplication by the cubic defining \( \widetilde{E} \), and \( i \colon \widetilde{E} \hookrightarrow \mathbb{P}^2 \) is the inclusion.
+Again, additivity of Euler characteristics imply that
+\[ \chi( \mathcal{O}_{\mathbb{P}^2}(-3) ) + \chi( \mathcal{O}_{\widetilde{E}}) = \chi( \mathcal{O}_{\mathbb{P}^2} ) , \]
+from which we can compute that \( \chi( \mathcal{O}_{\widetilde{E}} ) = 0 \).
+\begin{exercise}
+  Generalize this last argument to show that if \( C \) is a plane curve of degree \( d \) in \( \mathbb{P}^2 \), then \( \chi( \mathcal{O}_C ) = 1 - \frac{(d-1)(d-2)}{2} \).
+\end{exercise}
+The conclusion is that \( H^0 \left( E, \text{skyscrapers} \right) = \chi( \text{skyscrapers} ) = 0 \), so in fact the map
+\[ \mathcal{O}_{\widetilde{E}} \to \pi_* \mathcal{O}_E \]
+must be an isomorphism.
+This concludes our proof of ``(A) implies (B)''.
+But the computation of \( \chi( \mathcal{O}_{\widetilde{E}}) \) also shows that ``(B) implies (A)''.
+
+To sum up, we started with \( (E,O) \) as in (1) and produced a cubic curve given by a Weierstrass equation.
+But \( (E,O) \) can produce many such Weierstrass equations depending of choices of \( x,y \).
+The choice is only unique up to an action of an upper triangular \( 3\times 3 \)-matrix.
+This is because we chose the basis in such a way as to be compatible with the filtration
+\[ H^0 \left( E, \mathcal{O}_E \right) \subset H^0 \left( E, \mathcal{O}(2O) \right) \subset H^0 \left( E, \mathcal{O}(3O) \right),  \]
+i. e. we can replace \( x \mapsto u x+\alpha \) and \( y \mapsto vy + \beta x + \gamma \), and this is encoded by an upper triangular matrix.
+In the end, we have
+\[ \left\lbrace (E,O) \right\rbrace/\text{iso} \cong \left( k^5 \right)^{\Delta \neq 0} / B(k) . \]
+If \( \operatorname{char}k \neq 2,3 \), we can further simplify this quotient, by choosing \( x,y \) such that \( a_1,a_3,a_2=0 \).
+In the Weierstrass equation, we can complete the square on the left hand side and complete the cube on the right hand side:
+\begin{align*}
+  y^2 + a_1 xy + a_3 y & = \left( y+ \frac{a_1}{2} x + \frac{a_3}{2} \right)^2 + \text{quadratic polynomial in \( x \)} , \\
+  x^3 + a_2 x^2 + a_4 x + a_6 &= \left( x + \frac{a_2}{3} \right)^3 + \text{linear polynomial in \( x \)} .
+\end{align*}
+This gets rid of \( a_1,a_3,a_2 \).
+So if \( \operatorname{char} k \neq 2,3 \),
+\begin{align*}
+  \left\lbrace (E,O) \right\rbrace/\text{iso} \cong \left( k^2 \right)^{\Delta \neq 0} / k^\times = \left\lbrace \left( a_4,a_6 \right) : 4 a_4^3 + 27a_6^2 \neq 0 \right\rbrace / k^\times ,
+\end{align*}
+where as we'll see next time the action of \( u \in k^\times \) is given by \( u \left( a_4,a_6 \right) = \left( u^{-4} a_4, u^{-6} a_6 \right) \).
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "elliptic-curves"
+%%% End:

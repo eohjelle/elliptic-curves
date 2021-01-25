@@ -1,0 +1,199 @@
+\section{Lecture 4 (Wednesday 1/20)}
+Let us recap what we defined the group law on an elliptic curve in two different ways:
+\begin{enumerate}
+\item Via chords and tangents. To add two points \( P \) and \( Q \), take the line through \( P,Q \) and let \( R' \) be the point where this line intersects \( E \). Now take the line through \( O,R' \) and let \( R \) be the point where this line intersects \( E \). Then \( P \oplus Q = R \).
+\item More intrinsic description. Now \( P \oplus Q \) is characterized by \( \mathcal{O}(O) \otimes \mathcal{O} \left( P\oplus Q \right) \cong \mathcal{O}(P) \otimes \mathcal{O}(Q) \), i. e. the map \( E \to \operatorname{Pic}^0 E \) given by \( P \mapsto \mathcal{O}(P - O) \) is a group homomorphism.
+\end{enumerate}
+We saw that these group laws coincide, by verifying that both operations are characterized by
+\begin{center}
+  \( P \oplus Q \oplus R = 0 \) if and only if \( P,Q,R \) are colinear.
+\end{center}
+We also made the claim:
+\begin{proposition}
+  The only proper smooth group variety of dimensioon 1 are elliptic curves.
+\end{proposition}
+Properness is essential, because \( \mathbb{G}_m \) and \( \mathbb{G}_a \) satisfy the other properties.
+
+\textit{Proof.} We'll show that \( \Omega^1_{G/k} \cong \mathcal{O}_G \).
+As the case of Lie groups, the idea is to choose a trivialization at a point and translate this to any other point using the group operation.
+\[
+\begin{tikzcd}
+  G \times G \arrow[r,"\cong"',"{( \operatorname{pr}_1, m )}"] \arrow[dr,"{\operatorname{pr}_1}"'] & G \times G \arrow[r,"{\operatorname{pr}_2}"] \arrow[d,"{\operatorname{pr}_1}"] & G \arrow[d] \\
+  & G \arrow[r] & \operatorname{Spec} k
+\end{tikzcd}
+\]
+The right hand square is clearly Cartesian, so we get another Cartesian square using the isomorphism on the left. Now use the fact that formation of relative differentials commutes with base change:
+\begin{align*}
+  \Omega^1_{G \times G / \operatorname{pr}_1 } & \cong \operatorname{pr}_2^* \Omega^1_{G/k} & \mbox{(inner square)} \\
+  \Omega^1_{G \times G / \operatorname{pr}_1} & \cong m^* \Omega^1_{G/k} . & \mbox{(outer square)}
+\end{align*}
+In sum, \( m^* \Omega^1_{G/k} \cong \operatorname{pr}_2^* \Omega^1_{G/k} \).
+Now pull back via the map \( \phi \colon G \to G \times G \), with \( \phi(g) = (g,e) \).
+Since \( \operatorname{pr}_2 \circ \phi = e \) is constant and \( m \circ \phi = \operatorname{id} \), we obtain finally
+\[ e^* \mathcal{O}_G \cong \phi^* \operatorname{pr}_2^* \Omega^1_{G/k} \cong \phi^* m^* \Omega^1_{G/k} \cong \Omega^1_{G/k} . \]
+If \( G \) is smooth, then  \( e^* \Omega^1_{G/k} \cong \mathcal{O}_G^{\oplus d} \), where \( d = \operatorname{dim} G \).
+\qed
+\begin{remark}
+  The proof shows that \( \Omega_{G/k}^1 \) is a trivial vector bundle of rank \( \operatorname{dim}T_e G \).
+  Properness is only needed to show that \( G \) has genus 1.
+\end{remark}
+\subsection{Isogenies}
+\begin{definition}
+  An \textit{isogeny} \( \phi \colon \left( E,O \right) \to \left( E',O' \right) \) is a morphism of curves \( \phi \colon E \to E' \) such that \( \phi(O) = O' \).
+\end{definition}
+\begin{remark}
+  Some people insist that isogenies must be non-constant.
+\end{remark}
+There are two basic cases:
+\begin{enumerate}
+\item \( \phi \) is constant, in which case \( \phi(E) = \left\lbrace O' \right\rbrace \).
+\item \( \phi \) is non-constant. Then \( \phi \) is necessarily finite, flat, surjective, and \( \phi \colon E \to E' \) is a branched covers of curves.
+\end{enumerate}
+For a branched cover of curves, there is anotion of degree:
+\begin{align*}
+  \operatorname{deg} \phi & = \operatorname{dim}_k \phi^{-1} \left\lbrace x \right\rbrace & \text{for any } x \in E' \\
+                          & = \text{total degree of points in \( \phi^{-1} \left\lbrace x \right\rbrace \) counted with multiplicity} & \\
+                          & = \operatorname{dim} \left( \phi_* \mathcal{O}_E \right)_x \otimes_{\mathcal{O}_{E',x}} \kappa(x) & \\
+                          & = \operatorname{rank} \phi_* \mathcal{O}_E . &
+\end{align*}
+Degree is multiplicative: \( \operatorname{deg} \left( \phi \circ \psi \right) = \operatorname{deg}(\phi) \operatorname{deg}(\psi) \).
+\begin{example}
+  Let \( E: y^2 = x^3 + x \), and define \( \phi \colon E \to E \) by \( (x,y) \mapsto (-x,iy) \).
+  This is well-defined because \( (iy)^2 = - y^2 = -x^3 - x = (-x)^3 + (-x) \).
+  This isogeny has degree 1 because it is an automorphism.
+  Indeed, \( \phi = [i] \) is ``multiplication by \( i \)'', and \( \phi^2 = [i]^2 = [-1] \), which sends \( (x,y) \mapsto (x,-y) \).
+\end{example}
+\begin{example}
+  Multiplication by \( [2] \colon E \to E \) given by \( P\mapsto P \oplus P \).
+  If \( E \) is given by \( y^2=x^3+ax+b \), and in Silverman you can find the formula for this map in coordinates:
+  \[ \left( x,y \right) \mapsto \left( \frac{(3x^2+a)^2 - 8xy^2}{4y^2}, \frac{42xy^2 \left( 3x^2 +a \right) - (3x^2 +a)^3 - 8y^5}{8y^3} \right) . \]
+  We have a commutative diagram
+  \[
+  \begin{tikzcd}
+    E \arrow[r,"{[2]}"] \arrow[d,"x"] & E \arrow[d,"x"] \\
+    \mathbb{P}^1 \arrow[r] & \mathbb{P}^1 ,
+  \end{tikzcd}
+\]
+where the bottom map is
+\[ x \mapsto \frac{(3x^2 + a^2)-2x}{4(x^3+ax+b)} . \]
+This map has degree 4, because it is given by the ratio of two degree 4 polynomials that are coprime.
+The degree of \( x \) is 2 (because for a given \( x \) there are generically two choices for \( y \)), so by multiplicativity of degree it follows that \[ \operatorname{deg}[2] = 4 . \]
+This is still true if \( \operatorname{char}k = 2 \).
+\end{example}
+\begin{example}
+  Suppose \( \operatorname{char} k = p>0 \).
+  If \( X \) is a scheme over \( k \), then the \textit{absolute Frobenius} \( F_X \colon X \to X \) raises all functionos to the \( p \)'th power. This is a morphism of schemes, but it is not defined over \( k \). Instead we have the commutative diagram
+  \[
+\begin{tikzcd}
+  X \arrow[r,"F_X"] \arrow[d] & X \arrow[d] \\
+  \operatorname{Spec} k \arrow[r,"F_k"] & \operatorname{Spec} k .
+\end{tikzcd}
+\]
+There is now another commutative diagram
+\[
+\begin{tikzcd}
+  X \arrow[rr,bend left,"F_X"] \arrow[dr] \arrow[r,dashed,"F_{X/k}"] & X^{(p)} \arrow[r] \arrow[d] \arrow[dr,phantom,"{\lrcorner}",very near start] & X \arrow[d] \\
+  & \operatorname{Spec} k \arrow[r,"F_k"] & \operatorname{Spec} k ,
+\end{tikzcd}
+\]
+where \( X^{(p)} \) is defined to be the pullback in the right hand square, and \( F_{X/k} \) is the unique map making the diagram commute.
+The map \( F_{X/k} \) is called the \textit{relative Frobenius}, and it \textit{is} defined over \( k \).
+
+As a concrete example, consider an elliptic curve \( E : y^2 = x^3 + ax + b \).
+The standard affine open is then Spec of \( \frac{k[x,y]}{(y^2 - x^3 - ax -b)} \).
+The corresponding affine chart for \( E^{(p)} \) is Spec of
+\[ \frac{k[x,y]}{(y^2-x^3-ax-b)} \otimes_{k,F_k} k \cong \frac{k[x,y]}{y^2 - x^3 - a^p x - b^p} .  \]
+In other words, \( E^{(p)} : y^2 = x^3 + a^p x + b^p \).
+The relative Frobenius map is
+\begin{align*}
+  F_{X/k} \colon E & \to E^{(p)} \\
+  (x,y) & \mapsto (x^p,y^p) .
+\end{align*}
+Note that
+\[ (y^p)^2 = (y^2)^p = (x^3+ax+b)^p = (x^p)^3 + a^p x^p + b^p , \]
+so this is indeed well defined.
+
+Note also that \( F_{E/k}^{-1} \left\lbrace O \right\rbrace \) is supported at \( O \).
+
+The same technique we used to prove that \( [2] \) had degree 4 can be used to show that \( F_{E/k} \) has degree \( p \), using the fact that \( \mathbb{P}^1 \to \mathbb{P}^1 , \, x \mapsto x^p \) has degree \( p \).
+We are in the situation that the for any point \( z \in E^{(p)} \), the preimage \( F_{E/k}^{-1} \left\lbrace z \right\rbrace \) is supported at a single point of \( E \).
+(The reason is essentially that in \( \overline{k} \) any element has a \textit{unique} \( p \)-th root.)
+It follows that \( \operatorname{dim}_k F_{E/k}^{-1} \left\lbrace z \right\rbrace = p \) for any \( z \in E^{(p)} \).
+In particular, \( F_{X/k} \) is ramified everywhere!
+(Note that this can't happen in characteristic zero.)
+In fact, \( F_{X/k} \) is the minimal isogeny with this property, in the sense that if \( \phi \colon E \to E' \) is another isogeny that is ramified at a point (or equivalently ramified everywhere, as we will see), then there is a unique dashed arrow making the diagram
+\[
+\begin{tikzcd}
+  E \arrow[rr,"\phi"] \arrow[dr,"F_{E/k}"'] & & E' \\
+  & E' \arrow[ur,dashed] &
+\end{tikzcd}
+\]
+commute. Such a \( \phi \) is known as an \textit{inseparable isogeny.}
+\end{example}
+Recall that there is a dictionary between irreducible smooth projective curves over \( k \) and function fields over \( k \), i. e. finitely generated field extensions of \( k \) of transcendence degree 1:
+\begin{align*}
+  C & \mapsto K(C) \\
+  \left[ \phi \colon C \to C' \text{ non-constant} \right] & \mapsto \left[ \phi^* \colon K(C') \hookrightarrow K(C) \right]
+\end{align*}
+\begin{definition}
+  An isogeny \( \phi \colon E \to E' \) is \textit{(in)separable} if \( \phi^* \colon K(E') \hookrightarrow K(E) \) is (in)separable.
+  \textit{Purely inseparable} means that for all \( f \in K(E) \), some \( f^{p^n} \in K(E') \).
+\end{definition}
+Under this dictionary, the Frobenius \( F_{C/k} \colon C \to C^{(p)} \) corresponds to \( F_{C/k}^* K(C^{(p)}) = K(C)^p \subseteq K(C) \), which indeed has degree \( p \).
+\begin{corollary}
+  Any inseparable map \( C\to D \) factors through Frobenius.
+\end{corollary}
+\textit{Proof.} If \( K(D) \subseteq K(C) \) is inseparable, then \( K(D) \subseteq K(C)^p \subseteq K(C) \). \qed
+
+\subsection{Rigidity}
+\begin{proposition}
+  Any isogeny \( \phi \colon E\to E' \) is a group homomorphism. That is, \( \phi \left( P \oplus Q \right) = \phi \left( P \right) \oplus \phi \left( Q \right) \).
+\end{proposition}
+Key input:
+\begin{lemma}[Rigidity]
+  Let \( X,Y \) be irreducible proper varieties over \( k \).
+  Fix \( x_0 \in X \) and \( y_0 \in Y \).
+  If \( f \colon X \times_k Y \to Z \) satisfies \( f \left( X \times_k \lbrace y_0 \rbrace \right) = f \left( \lbrace x_0 \rbrace \times_k Y \right) = z_0 \), then \( f \) is constant.
+\end{lemma}
+This implies the proposition, because the map
+\begin{align*}
+  f \colon E \times E & \to E' \\
+  (P,Q) & \mapsto  \phi( P \oplus Q ) \ominus \phi(P) \ominus \phi(Q)\
+\end{align*}
+has the property that \( f(E \times \left\lbrace O \right\rbrace) = f( \left\lbrace O \right\rbrace \times E ) = \left\lbrace O' \right\rbrace \), so is constant by the Rigidity Lemma.
+
+\textit{Proof of Rigidity Lemma.}
+\todo[inline]{Proof by picture}
+Let \( U \subseteq Z \) be an affine open containing \( z_0 \).
+Then \( f^{-1}U \subseteq X \times_k Y \) is an open containing \( X \times_k \left\lbrace y_0 \right\rbrace \).
+Since \( Y \) is proper, \( \operatorname{pr}_2 \left( X \times Y \setminus f^{-1} U \right) \) is closed in \( Y \),
+Therefore, there is an open \( V \subseteq Y \) containing \( y_0 \) such that the tube \( X \times V \subseteq f^{-1} U \).
+For any \( v \in V \), the image \( f(X \times \left\lbrace v \right\rbrace ) \) is a point because there are no non-constant maps from a proper variety to an affine variety.
+This constant must be \( f( x_0, v) = z_0 \).
+This shows that that \( f(X \times V) = \left\lbrace z_0 \right\rbrace \).
+
+Now observe that \( \left\lbrace y \in Y : f(X \times \left\lbrace y \right\rbrace ) = \left\lbrace z_0 \right\rbrace \right\rbrace \) is closed, and open by the above argument. So it must be a connected component of \( Y \), which is all of \( Y \). \qed
+
+\begin{corollary}
+  Any proper group smooth group variety is commutative.
+\end{corollary}
+\textit{Proof.}
+The commutator map
+\begin{align*}
+  G \times G & \to G \\
+  (g,h) & \mapsto ghg^{-1}h^{-1}
+\end{align*}
+collapses \( G \times \left\lbrace e \right\rbrace \) and \( \left\lbrace e \right\rbrace \times G \) to \( \left\lbrace e \right\rbrace \). \qed
+
+\begin{corollary}
+  The group variety structure on an elliptic curve \( (E,O) \) is unique.
+\end{corollary}
+\textit{Proof.}
+Suppose \( \left( E,\oplus_1 \right) \) and \( \left( E,\oplus_2 \right) \) are group variety structures with the same identity \( O \).
+Then the identity map \( \operatorname{id} \colon E \to E \) sends \( O \) to \( O \), so it is a group homomorphism by the proposition.
+\qed
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "elliptic-curves"
+%%% End:

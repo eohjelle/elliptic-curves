@@ -1,0 +1,192 @@
+\section{Lecture 6 (Monday 1/25)}
+Last time we gave various characterizations for an isogeny to be separable.
+The most convenient one was that an isogeny \( \phi \colon E \to E' \) is separable if and only if \( (d\phi)_O \colon T_O E \to T_{O'}E' \) is non-zero (or equivalently an isomorphism because we are dimension 1).
+This is equivalent to \( \phi \colon E \to E' \) being an unramified Galois cover (with Galois group \( \ker \phi ( \overline{k} ) \)).
+
+In general, \( \phi \colon E \to E' \) identifies \( E' \) as the quotient \( E / \ker \phi \).
+In the diagram
+\[
+\begin{tikzcd}
+  E \arrow[rr,"\phi"] \arrow[dr,"f"] & & E' \arrow[dl,dashed] \\
+  & C & 
+\end{tikzcd}
+\]
+the dashed arrow exists if and only if \( f \) is invariant under translation by elements of \( \ker \phi  \).
+
+We showed that \( \operatorname{End}(E) = \left\lbrace \text{isogenies } \phi \colon E \to E \right\rbrace \) is a characteristic zero domain, and \( [n] \neq 0 \).
+To analyze \( [n] \) further we studied the effect of \( \phi^* \colon \operatorname{Pic}(E') \to \operatorname{Pic}(E) \).
+There are two basic cases:
+\begin{enumerate}
+\item If \( \mathcal{L} \) is symmetric, \( [n]^* \mathcal{L} \cong \mathcal{L}^{\otimes n^2} \).
+\item If \( \mathcal{L} \) is anti-symmetric, \( \left( \phi + \psi \right)^* \mathcal{L} \cong \phi^* \mathcal{L} \otimes \psi^* \mathcal{L} \).  
+\end{enumerate}
+Both facts are proved using the Theorem of the Square: If \( \phi,\psi \colon E \to E' \), then pulling back behaves like a quadratic function, and we have a ``parallelogram law''
+\[ (\phi + \psi)^* \mathcal{L} + (\phi - \psi)^* \mathcal{L} \cong (\phi^* \mathcal{L})^{\otimes 2} \otimes \psi^* \mathcal{L} \otimes (-\psi)^* \mathcal{L} . \]
+\textit{Proof of the Theorem of the Square.}
+The first step is reduction to a ``universal case''.
+Consider the 4 maps \( p_1,p_2,d,m \colon E \times E \to E \) given by projections \( p_i \), the difference \( d(P,Q) = P \ominus Q \) and addition \( m(P,Q) = P\oplus Q \).
+\begin{claim}
+  Let \( \mathcal{L} \in \operatorname{Pic}(E) \). Then \[ m^* \mathcal{L} \otimes d^* \mathcal{L} \cong (p_1^* \mathcal{L})^{\otimes 2} \otimes p_2^* \mathcal{L} \otimes (-p_2)^* \mathcal{L} . \]
+\end{claim}
+This implies the Theorem of the Square, by pulling back the isomorphism via \( (\phi,\psi) \colon E \to E'\times E' \). So it remains to prove the claim.
+
+Let \[ \widetilde{\mathcal{L}} = m^* \mathcal{L} \otimes d^* \mathcal{L} (p_1^* \mathcal{L})^{\otimes (-2)} \otimes (p_1^* \mathcal{L})^{\otimes (-1)} \otimes ((-p_1)^*\mathcal{L})^{\otimes (-1)} . \]
+We must prove that \( \widetilde{\mathcal{L}} \) is trivial.
+Given a point \( Q \) in \( E \), note that
+\[ \widetilde{\mathcal{L}}|_{E \times \left\lbrace Q \right\rbrace} \cong t_Q^* \mathcal{L} \otimes t_{-Q}^* \mathcal{L} \otimes \mathcal{L}^{\otimes (-2)} , \]
+where \( t_{\pm Q} \colon E \to E \) is translation by \( \pm Q \).
+A necessary condition of \( \widetilde{\mathcal{L}} \) to be trivial is that \( \widetilde{\mathcal{L}} |_{E \times \left\lbrace Q \right\rbrace} \) is trivial.
+And this is indeed holds: It suffices to cheack for \( \mathcal{L} = \mathcal{O}(P) \), and
+\begin{align*}
+  t_Q^* \mathcal{O}(P) \otimes t_{-Q}^* \mathcal{O}(P) & \cong \mathcal{O} (P \oplus Q) \otimes \mathcal{O}(P \ominus Q)  \\
+                                                       & \cong \mathcal{O}(P \oplus Q - O) \otimes \mathcal{O}(P \ominus Q - O) \otimes \mathcal{O}(O)^{\otimes 2} \\
+                                                       & \cong \mathcal{O}(P - O) \otimes \mathcal{O}(Q-O) \otimes \mathcal{O}(P-O) \otimes \mathcal{O}(Q-O)^{\otimes (-1)} \otimes \mathcal{O}(O)^{\otimes 2} \\
+                                                       & \cong \mathcal{O}(P)^{\otimes 2} ,
+\end{align*}
+as needed.
+In fact, we checked that for any map \( i \colon \operatorname{Spec} K \to E \), where \( K \) is a field, \( (1 \times i)^* \widetilde{\mathcal{L}} \) is trivial on \( E \times \operatorname{Spec} K \).
+In particular, for \( i \colon \operatorname{Spec} K(E) \to E \) the generic point of \( E \).
+\todo[inline]{Insert picture}
+So there is an isomorphism \( \mathcal{O}_{E \times \operatorname{Spec} K(E)} \cong \widetilde{\mathcal{L}}|_{E \times \operatorname{Spec} K(E)}  \).
+It follows that there exists an open dense \( U \subseteq E \) such that \( \mathcal{O}_{E \times U} \cong \widetilde{\mathcal{L}}_{E \times U} \).
+In other words, \( \widetilde{\mathcal{L}} \) is trivial away from finitely many points \( E \times \left\lbrace P_i \right\rbrace \).
+Therefore, the divisor class of \( \widetilde{\mathcal{L}} \) is of the class of \( \sum_i n_i E \times \left\lbrace P_i \right\rbrace \), and it follows that
+\( \widetilde{\mathcal{L}} \cong p_2^* \mathcal{O} \left( \sum_i n_i P_i \right) \).
+
+We have shown that \( \widetilde{\mathcal{L}} \cong p_2^* \mathcal{N} \) for a line bundle \( \mathcal{N} \in \operatorname{Pic}(E) \). But then
+\[ \mathcal{N} \cong \widetilde{\mathcal{L}}|_{\left\lbrace O \right\rbrace \times E} \cong \mathcal{L} \otimes [-1]^* \mathcal{L} \otimes \mathcal{L}^{\otimes (-1)} \otimes [-1]^* \mathcal{L}^{\otimes (-1)} \cong \mathcal{O} . \]
+So \( \widetilde{\mathcal{L}} \cong p_2^* \mathcal{O} \cong \mathcal{O} \). \qed
+
+\begin{remark}
+  The same argument shows that whenever \( X,Y \) are irreducible smooth, \( \mathcal{L} \) is a line bundle on \( X \times Y \) such that \( \mathcal{L}|_{X \times \eta} \) is trivial, where \( \eta \in Y \) is the generic point, then \( \mathcal{L} \cong p_2^* \mathcal{N} \) for some \( \mathcal{N} \in \operatorname{Pic}(Y) \).
+
+  There is a better version of this statement, namely the \textit{See-saw Theorem}: Let \( X \) be proper and \( Y \) finite type, reduced, connected.
+  Let \( \mathcal{L} \) be a line bundle on \( X \times Y \). Then \( \mathcal{L} \cong p_2^* \mathcal{N} \) if and only if \( \mathcal{L}|_{X \times \left\lbrace s \right\rbrace} \) is trivial for every closed point \( s \) of \( Y \).
+
+    Note that a line bundle on \( X \times Y \) corresponds to a map \( Y \to \operatorname{Pic}(X) \). So the See-saw Theorem is a statement about separatedness of \( \operatorname{Pic}(X) \).
+\end{remark}
+
+\subsection{Dual isogenies}
+Let \( \phi \colon E \to E' \) be an isogeny. There is an induced map \( \phi^* \colon \operatorname{Pic}^0(E') \to \operatorname{Pic}^0(E) \) with \( \mathcal{L} \mapsto \phi^* \mathcal{L} \).
+The Abel-Jacobi map gave an isomorphism \( E( \overline{k} ) \cong \operatorname{Pic}^0(E) \).
+So there is a unique \( \hat{\phi} \) fitting into the diagram
+% \[
+% \begin{tikzcd}
+%   \operatorname{Pic}^0 (E') \arrow[r,"\phi^*"] & \operatorname{Pic}^0(E) \\
+%   E'( \overline{k} ) \arrow[u,"\operatorname{AJ}","\cong"'] \arrow[r,"\hat{\phi}"] & E( \overline{k} ) \arrow[u,"\operatorname{AJ}","\cong"'] .
+% \end{tikzcd}
+% \]
+\begin{definition}
+  The map \( \hat{\phi} \) above is the \textit{dual isogeny} of \( \phi \).
+\end{definition}
+We should justify the terminology.
+Namely, we have described \( \hat{\phi} \) on points, but we should verify that it is an isogeny.
+\begin{proposition}
+  There exists a unique isogeny \( \hat{\phi} \colon E' \to E \) such that \( \hat{\phi}|_{E(\overline{k})} \) agrees with the above definition.
+\end{proposition}
+\begin{remark}
+  If we had promoted the Abel-Jacobi map to a morphism of \textit{schemes}, this would be completely transparent.
+\end{remark}
+\textit{Proof.}
+The idea is to characterize \( \hat{\phi} \) by
+\[ [ \deg \phi ] = \hat{\phi} \circ \phi . \]
+Let us check that our definition satisfies this:
+Choose \( P \in E(\overline{k}) \), and let \( Q = \phi(P) \).
+Then
+\begin{align*}
+ \hat{\phi}(Q) & = \operatorname{AJ}^{-1} \circ \phi^* \circ \operatorname{AJ}(Q)  = \operatorname{AJ}^{-1} \left( \phi^* \mathcal{O}(Q-O) \right).
+\end{align*}
+Now, using the fact that fibers of \( \phi \) differ by translations via elements of \( \ker \phi \),
+\[ \phi^* \mathcal{O}(Q-O)
+  = \mathcal{O}(\phi^{-1} Q - \phi^{-1} O' ) = \mathcal{O} ( \sum n_R (R \oplus P) - \sum n_R R )
+  = \mathcal{O}(P-O)^{\otimes (\sum n_R )}
+ = \operatorname{AJ}(P)^{\otimes \operatorname{deg} \phi} . \]
+Taking \( \operatorname{AJ}^{-1} \), we see that our definition satisfies the condition.
+
+To see that \( \hat{\phi} \) exists, we have to show that \( \hat{\phi} \) exists in the diagram
+\[
+\begin{tikzcd}
+  E \arrow[rr,"\phi"] \arrow[dr,"{[\deg \phi]}"'] & & E' \arrow[dl,dashed,"{\hat{\phi}}"] \\
+  & E . & 
+\end{tikzcd}
+\]
+This is equivalent to showing that \( [\deg \phi] \) is invariant under translation by \( \ker \phi \), i. e. that \( [\deg \phi] (\ker \phi) = 0 \).
+But this is Lagrange's Theorem!
+In the separable case it is literally Lagrange's Theorem.
+One could also make sense of Lagrange's Theorem in the inseparable case, but alternatively, if \( \phi = \operatorname{Frob} \) we can directly factorize,
+\[
+\begin{tikzcd}
+  E \arrow[rr,"{\operatorname{Frob}}"] \arrow[dr,"{[p]}"'] & & E^{(p)} \arrow[dl,"{\exists !}",dashed] \\
+  & E . & 
+\end{tikzcd}
+\]
+The existence of \( \hat{\phi} \) is stable under composition: \( \widehat{\phi \circ \psi} = \hat{\phi} \circ \hat{\psi} \).
+And any \( \phi \) is the composition of an inseparable and Frobenius. \qed
+
+Summary of properties of the dual isogeny:
+\begin{enumerate}
+\item \( \widehat{\phi \circ \psi} = \hat{\phi} \circ \hat{\psi} \)
+\item \( \widehat{\phi + \psi} = \hat{\phi} + \hat{\psi} \).
+\item \( \phi \circ \hat{\phi} , \hat{\phi} \circ \phi = [ \deg \phi ] \).
+\item \( \deg \hat{\phi} = \deg \phi \)
+\end{enumerate}
+In particular, \( \operatorname{End}(E) \) has a positive anti-involution \( \hat{\cdot} \).
+\begin{remark}
+  In higher dimension, given \( \phi \colon A \to B \) there is a dual isogeny \( \operatorname{Pic}^0(B) = \hat{B} \to \hat{A} = \operatorname{Pic}^0(A) \).
+  But there are not isomorphisms \( A \cong \hat{A} \) and \( B \cong \hat{B} \) in general; this is a feature of dimension 1.
+\end{remark}
+\subsection{Example: The Poncelet Porism}
+Assume \( \operatorname{char} k \neq 2 \).
+Let \( C_1, C_2 \subseteq \mathbb{P}^2 \) be smooth conics (i. e. of degree 2) which are not tangent to each other.
+Let \( P_1 \in C_1 \), and consider the following process.
+Given \( P_k \), draw the line \( l \) through \( P_k \) that is tangent to \( C_2 \), and let \( P_{k+1} \) be the other intersection point of \( l \) with \( C_1 \).
+\todo[inline]{Insert picture}
+\begin{proposition}
+  Whterh this process is periodic is independent of \( P \).
+\end{proposition}
+\begin{example}
+  Start with an equilateral triangle, let \( P \) be a vertex, \( C_1 \) the circumscribed circle and \( C_2 \) the  inscribed circle.
+  Then the process is evidently periodic (with period 3). The same is true if we had started with a regular \( n \)-gon instead of a triangle.
+  More interestingly, if we started with say a random quadrilateral that has an incribed and circumscribed circle, this is still true, but not for obvious symmetry reasons.
+\end{example}
+\begin{example}
+  Take two circles centered at the same point. Then the process is not periodic for most ratios of radii.
+\end{example}
+\textit{Proof.}
+Consider \( \check{ \mathbb{P}}^2 = \left\lbrace \text{lines in } \mathbb{P}^2 \right\rbrace \).
+The dual conic to \( C_2 \) is
+\[ \check{C}_2 = \left\lbrace \text{lines tangent to } C_2 \right\rbrace \subseteq \check{ \mathbb{P}}^2 , \]
+which is also a smooth conic.
+Now consider
+\[
+\widetilde{C} = \left\lbrace (P,l) \in C_1 \times \check{C}_2 : P \in l \right\rbrace \subseteq \mathbb{P}^2 \times \check{\mathbb{P}}^2 .
+\]
+In other words, \( \widetilde{C} \) is the intersection of \( C_1 \times \check{C}_2 \) with the incidence plane \( H = \left\lbrace (P,l) \in \mathbb{P}^2 \times \check{\mathbb{P}}^2 : P \in l \right\rbrace \).
+The point now is that
+\begin{enumerate}
+\item \( \widetilde{C} \) is a smooth projective curve.
+\item The genus of \( \widetilde{C} \) is 1.  
+\end{enumerate}
+To check this, consider the projection map \( \pi \colon \widetilde{C} \to C_1 \). The fiber over a point \( P \in C_1 \) is given by
+\[ \pi^{-1} \left\lbrace P \right\rbrace = \left\lbrace (P,l) : l \text{ tangent to } C_2 \text{ and } P \in l \right\rbrace . \]
+There are two lines \( l_1,l_2 \) tangent to \( C_2 \) that pass through \( P \).
+So \( \pi^{-1} \left\lbrace P \right\rbrace \) has two distinct points, unless \( P \in C_1 \cap C_2 \).
+In fact, \( \pi \) is a branched cover of degree 2, ramified at the 4 points where \( C_1 \) and \( C_2 \) intersect.
+The Riemann-Hurwitz formula then tells you that the genus of \( \widetilde{C} \) is 1.
+
+We can now describe the above process as follows:
+Consider the automorphism
+\begin{align*}
+  \tau \colon \widetilde{C} & \to \widetilde{C} \\
+  (P,l) & \mapsto (P',l)
+\end{align*}
+that sends \( (P,l) \) to the other intersection of \( C_1 \) with \( l \).
+The key point is now that \( \tau \) has no fixed points (because \( C_1 \) is not tangent to \( C_2 \)).
+Therefore, \( \tau = t_{M} \) for some \( M \in \widetilde{C}(\overline{k}) \).
+Now \( \tau^N = t_{[N]M} \). Either \( \tau^N = \operatorname{id} \) for some \( N \) (or equivalently, \( M \) is torsion), or \( \tau^N \) has no fixed points for all \( N \).
+These two situations correspond to whether the process we described is periodic or not. \qed
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "elliptic-curves"
+%%% End:
